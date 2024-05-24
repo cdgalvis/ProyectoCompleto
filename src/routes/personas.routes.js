@@ -9,9 +9,9 @@ router.get('/add', (req, res)=>{
 
 router.post('/add', async (req, res)=>{
     try {
-        const { name, lastname, age} = req.body
+        const { name, lastname, age, observacion} = req.body
         const newPersona = {
-            name, lastname, age
+            name, lastname, age, observacion
         }
         await pool.query('INSERT INTO personas SET ?', [newPersona]);
         res.redirect('/list');
@@ -54,16 +54,10 @@ router.get('/edit/:id', async (req, res)=>{
 router.post('/edit/:id', async (req, res)=>{
     try {
         const {id} = req.params
-        const {name, lastname, age}  = req.body
-        const editPersona = {
-                                name, 
-                                lastname, 
-                                age
-                            }
-    
+        const {name, lastname, age, observacion}  = req.body
+        const editPersona = {name, lastname,age, observacion}
         await pool.query('UPDATE personas SET ? WHERE id = ?', [editPersona, id]);
         res.redirect('/list');
-
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
