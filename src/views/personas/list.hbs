@@ -11,6 +11,7 @@
                         <th scope="col"> Apellido   </th>
                         <th scope="col"> Edad       </th>
                         <th scope="col"> Observacion  </th>
+                        <th scope="col"> Imagen  </th>
                         <th scope="col"> Acciones   </th>
                     </tr>
                 </thead>
@@ -22,6 +23,9 @@
                             <td> {{lastname}} </td>
                             <td> {{age}} </td>
                             <td> {{observacion}} </td>
+                            <td>
+                                <img src="/uploads/{{image}}" class="card-img-top mx-auto m-2 rounded-circle" style="width: 150px; height: 150px;display:block;">
+                            </td>
                             <td> 
                                 <div class="btn-group">
                                     <a href="/edit/{{id}}" class="btn btn-warning p-2">
