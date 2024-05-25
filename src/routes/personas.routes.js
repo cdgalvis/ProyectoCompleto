@@ -70,7 +70,7 @@ router.get('/edit/:id', async (req, res) => {
     }
 });
 
-router.post('/edit/:id', async (req, res) => {
+router.post('/edit/:id',  upload.single('file'), async (req, res) => {
     try {
         const { id } = req.params
         const { name, lastname, age, observacion } = req.body
