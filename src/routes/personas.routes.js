@@ -74,15 +74,20 @@ router.post('/edit/:id', async (req, res) => {
     try {
         const { id } = req.params
         const { name, lastname, age, observacion } = req.body
-        const editPersona = { name, lastname, age, observacion }
+        let editPersona = {}
+        if(req.file){
+            const file = req.file
+            const imagen_original = file.originalname
+            const imagen = file.filename
+            editPersona = { name, lastname, age, observacion, imagen}
+        }else{
+            editPersona = {name, lastname, age, observacion}
+        }
         await pool.query('UPDATE personas SET ? WHERE id = ?', [editPersona, id]);
         res.redirect('/list');
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
-
-
-
 
 export default router;
